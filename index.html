@@ -6,60 +6,74 @@
     <title>School Updates</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Signature stamp style */
-        .signature {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: #2a2a2a;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
             color: #ffffff;
-            padding: 5px 10px;
-            font-size: 0.9em;
-            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            padding: 15px;
+            font-size: 1.5em;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dropdown {
+            width: 90%;
+            max-width: 300px;
+            background-color: #2a2a2a;
             border-radius: 5px;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            overflow: hidden;
+            text-align: center;
         }
 
-        .signature:hover {
-            opacity: 1;
-        }
-
-        /* Dropdown and button animations */
         .dropdown button {
+            width: 100%;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .dropdown.active .dropdown-content {
-            opacity: 1;
-            max-height: 200px;
+        .dropdown button:hover {
+            background-color: #444;
+        }
+
+        .dropdown-content {
+            display: none;
+            padding: 10px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        /* Hover effects for buttons */
-        button:hover {
-            background-color: #444;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 600px) {
-            header {
-                font-size: 1.2em;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            #time {
-                font-size: 1.5em;
-            }
-
-            .update {
-                font-size: 0.9em;
-            }
+        .dropdown.active .dropdown-content {
+            display: block;
+            opacity: 1;
+            max-height: 200px;
         }
     </style>
 </head>
@@ -69,7 +83,7 @@
     </header>
     
     <div class="container">
-        <h1>School Updates1</h1>
+        <h1>School Updates</h1>
         <div id="time">Loading time...</div>
         <div class="updates">
             <h2>Latest Updates</h2>
@@ -77,29 +91,25 @@
         </div>
     </div>
     
-    <div class="dropdown menu-left">
-        <button onclick="toggleDropdown('menu1')">Latin</button>
-        <div id="menu1" class="dropdown-content">TBD</div>
-    </div>
-    <div class="dropdown menu-left">
-        <button onclick="toggleDropdown('menu2')">Geometry</button>
-        <div id="menu2" class="dropdown-content">TBD</div>
-    </div>
-    
-    <div class="dropdown menu-right">
-        <button onclick="toggleDropdown('menu3')">N/A</button>
-        <div id="menu3" class="dropdown-content">TBD</div>
-    </div>
-    <div class="dropdown menu-right">
-        <button onclick="toggleDropdown('menu4')">N/A</button>
-        <div id="menu4" class="dropdown-content">TBD</div>
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button onclick="toggleDropdown('menu1')">Latin</button>
+            <div id="menu1" class="dropdown-content">TBD</div>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('menu2')">Geometry</button>
+            <div id="menu2" class="dropdown-content">TBD</div>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('menu3')">N/A</button>
+            <div id="menu3" class="dropdown-content">TBD</div>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('menu4')">N/A</button>
+            <div id="menu4" class="dropdown-content">TBD</div>
+        </div>
     </div>
 
-    <!-- Signature stamp -->
-    <div class="signature">
-        tbls1
-    </div>
-    
     <script>
         function updateTime() {
             const now = new Date();
