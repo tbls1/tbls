@@ -39,6 +39,23 @@ header {
     border-radius: 5px;
 }
 
+/* Dropdown and button animations */
+.dropdown button {
+    transition: background-color 0.3s ease;
+}
+
+.dropdown.active .dropdown-content {
+    opacity: 1;
+    max-height: 200px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects for buttons */
+button:hover {
+    background-color: #444;
+    transition: background-color 0.3s ease;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
     header {
