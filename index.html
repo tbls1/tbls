@@ -6,44 +6,38 @@
     <title>School Updates</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Additional inline styles for animations and smooth transitions */
-        .dropdown {
-            width: 200px;
+        /* Signature stamp style */
+        .signature {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
             background-color: #2a2a2a;
+            color: #ffffff;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            font-weight: bold;
             border-radius: 5px;
-            overflow: hidden;
-            position: absolute;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
-        .dropdown-content {
-            display: none;
-            padding: 10px;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+
+        .signature:hover {
+            opacity: 1;
         }
+
+        /* Dropdown and button animations */
         .dropdown button {
-            width: 100%;
-            background-color: #1e1e1e;
-            color: white;
-            padding: 10px;
-            border: none;
-            text-align: left;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .dropdown button:hover {
-            background-color: #444;
-        }
+
         .dropdown.active .dropdown-content {
-            display: block;
             opacity: 1;
             max-height: 200px;
+            transition: all 0.3s ease;
         }
-        .menu-left { left: 10px; top: 200px; }
-        .menu-right { right: 10px; top: 200px; }
 
-        /* Hover effect for buttons */
+        /* Hover effects for buttons */
         button:hover {
             background-color: #444;
             transition: background-color 0.3s ease;
@@ -51,28 +45,18 @@
 
         /* Responsive styles */
         @media (max-width: 600px) {
-            .dropdown {
-                position: relative;
-                width: 90%;
-                margin: 10px auto;
-            }
-            .menu-left, .menu-right {
-                left: auto;
-                right: auto;
-                top: auto;
-            }
-            .dropdown button {
-                text-align: center;
-            }
             header {
                 font-size: 1.2em;
             }
+
             .container {
                 padding: 15px;
             }
+
             #time {
                 font-size: 1.5em;
             }
+
             .update {
                 font-size: 0.9em;
             }
@@ -109,6 +93,11 @@
     <div class="dropdown menu-right">
         <button onclick="toggleDropdown('menu4')">N/A</button>
         <div id="menu4" class="dropdown-content">TBD</div>
+    </div>
+
+    <!-- Signature stamp -->
+    <div class="signature">
+        tbls1
     </div>
     
     <script>
