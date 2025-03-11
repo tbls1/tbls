@@ -40,14 +40,64 @@ header {
 }
 
 /* Dropdown and button animations */
+.dropdown {
+    z-index: 10; /* Ensure dropdown is on top */
+    width: 200px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.dropdown-content {
+    display: none;
+    padding: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
 .dropdown button {
+    width: 100%;
+    background-color: #1e1e1e;
+    color: white;
+    padding: 10px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
+.dropdown button:hover {
+    background-color: #444;
+}
+
 .dropdown.active .dropdown-content {
+    display: block;
     opacity: 1;
     max-height: 200px;
     transition: all 0.3s ease;
+}
+
+/* Signature stamp style */
+.signature {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.signature:hover {
+    opacity: 1;
 }
 
 /* Hover effects for buttons */
@@ -61,11 +111,11 @@ button:hover {
     header {
         font-size: 1.2em;
     }
-    
+
     .container {
         padding: 15px;
     }
-    
+
     #time {
         font-size: 1.5em;
     }
