@@ -123,4 +123,27 @@ button:hover {
     .update {
         font-size: 0.9em;
     }
+
+    .dropdown {
+        position: relative;
+        width: 100%;  /* Ensure dropdown takes up full width on mobile */
+        margin: 10px 0;  /* Add some margin between dropdowns */
+    }
+
+    .dropdown button {
+        text-align: center;
+        width: 100%; /* Make sure buttons fill the width */
+    }
+
+    .menu-left, .menu-right {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        margin: 0;
+    }
+
+    .dropdown-content {
+        width: 100%; /* Ensure the dropdown content spans the full width */
+    }
 }
