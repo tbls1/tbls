@@ -6,6 +6,7 @@
     <title>School Updates</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Additional inline styles for animations and smooth transitions */
         .dropdown {
             width: 200px;
             background-color: #2a2a2a;
@@ -16,6 +17,10 @@
         .dropdown-content {
             display: none;
             padding: 10px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         .dropdown button {
             width: 100%;
@@ -25,15 +30,24 @@
             border: none;
             text-align: left;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .dropdown button:hover {
             background-color: #444;
         }
         .dropdown.active .dropdown-content {
             display: block;
+            opacity: 1;
+            max-height: 200px;
         }
         .menu-left { left: 10px; top: 200px; }
         .menu-right { right: 10px; top: 200px; }
+
+        /* Hover effect for buttons */
+        button:hover {
+            background-color: #444;
+            transition: background-color 0.3s ease;
+        }
 
         /* Responsive styles */
         @media (max-width: 600px) {
@@ -49,6 +63,18 @@
             }
             .dropdown button {
                 text-align: center;
+            }
+            header {
+                font-size: 1.2em;
+            }
+            .container {
+                padding: 15px;
+            }
+            #time {
+                font-size: 1.5em;
+            }
+            .update {
+                font-size: 0.9em;
             }
         }
     </style>
