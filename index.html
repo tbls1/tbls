@@ -163,5 +163,38 @@
             dropdown.parentElement.classList.toggle("active");
         }
     </script>
+    <script>
+  const sheetID = "10lZ3i0Rj7iUjOMG3TQCR18rKsP2JvDFGUjewcoAbj_8";
+  const apiKey = "AIzaSyBNvRfcN2csWoo0YZ5kW9Z865sefvyiJPA";
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/10lZ3i0Rj7iUjOMG3TQCR18rKsP2JvDFGUjewcoAbj_8/values/Sheet1?key=AIzaSyBNvRfcN2csWoo0YZ5kW9Z865sefvyiJPA`;
+
+  async function fetchUpdates() {
+      try {
+          const response = await fetch(url);
+          const data = await response.json();
+          displayUpdates(data.values);
+      } catch (error) {
+          console.error("Error fetching updates:", error);
+      }
+  }
+
+  function displayUpdates(rows) {
+      const updatesContainer = document.querySelector(".updates");
+      updatesContainer.innerHTML = "<h2>Latest Updates</h2>";
+
+      for (let i = 1; i < rows.length; i++) {
+          const [date, title, desc] = rows[i];
+          updatesContainer.innerHTML += `
+              <div class="update">
+                  <strong>${date} - ${title}</strong>
+                  <p>${desc}</p>
+              </div>
+          `;
+      }
+  }
+
+  fetchUpdates();
+</script>
+
 </body>
 </html>
