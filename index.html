@@ -59,7 +59,7 @@
     <div class="menu-icon" onclick="toggleSidebar()">☰</div>
     <div class="sidebar" id="sidebar">
         <a href="#" onclick="showContent('home')">Home</a>
-        <a href="#" onclick="showContent('updates')">Latest Updates</a>
+        <a href="#" onclick="showContent('about')">About</a>
     </div>
 
     <header>
@@ -67,11 +67,8 @@
         <div id="time">Loading time...</div>
     </header>
     <div class="container">
-        <h1>School Updates</h1>
-        <div class="updates">
-            <h2>Latest Updates</h2>
-            <div class="update">No updates available.</div>
-        </div>
+        <h1>Welcome</h1>
+        <div class="updates">Loading updates...</div>
     </div>
 
     <script>
@@ -83,9 +80,10 @@
         function showContent(section) {
             const content = document.querySelector(".container");
             if (section === "home") {
-                content.innerHTML = "<h1>Welcome</h1><p>Select a menu item from the sidebar.</p>";
-            } else if (section === "updates") {
+                content.innerHTML = "<h1>Welcome</h1><div class='updates'>Loading updates...</div>";
                 fetchUpdates();
+            } else if (section === "about") {
+                content.innerHTML = "<h1>About</h1><p>Learn more about The Brooklyn Latin School.</p>";
             }
         }
 
@@ -102,8 +100,9 @@
         async function fetchUpdates() {
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error("Failed to fetch data.");
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
                 const data = await response.json();
+
                 if (!data.values || data.values.length <= 1) {
                     document.querySelector(".updates").innerHTML = "<h2>Latest Updates</h2><div class='update'>No updates available.</div>";
                     return;
@@ -111,20 +110,26 @@
                 displayUpdates(data.values);
             } catch (error) {
                 console.error("Error fetching updates:", error);
-                document.querySelector(".updates").innerHTML = "<h2>Latest Updates</h2><div class='update'>Error loading updates.</div>";
+                document.querySelector(".updates").innerHTML = `<h2>Latest Updates</h2><div class='update'>Error loading updates: ${error.message}</div>`;
             }
         }
 
         function displayUpdates(rows) {
-            const updatesContainer = document.querySelector(".updates");
-            updatesContainer.innerHTML = "<h2>Latest Updates</h2>";
-            rows.slice(1).forEach(([date, title, desc]) => {
-                if (date && title && desc) {
-                    updatesContainer.innerHTML += `<div class="update"><strong>${date} - ${title}</strong><p>${desc}</p></div>`;
-                }
-            });
+            try {
+                const updatesContainer = document.querySelector(".updates");
+                updatesContainer.innerHTML = "<h2>Latest Updates</h2>";
+                rows.slice(1).forEach(([date, title, desc]) => {
+                    if (date && title && desc) {
+                        updatesContainer.innerHTML += `<div class="update"><strong>${date} - ${title}</strong><p>${desc}</p></div>`;
+                    }
+                });
+            } catch (error) {
+                console.error("Error displaying updates:", error);
+                document.querySelector(".updates").innerHTML = "<h2>Latest Updates</h2><div class='update'>Error processing updates.</div>";
+            }
         }
 
+        // Load updates when the page loads
         fetchUpdates();
         setInterval(fetchUpdates, 60000);
     </script>
