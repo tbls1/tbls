@@ -3,135 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Updates</title>
+    <title>Home - Brooklyn Latin School</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        /* Sidebar Styles */
-        .menu-icon {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background-color: #222;
-            padding-top: 60px;
-            transition: 0.3s;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #444;
-        }
-        
-        /* Existing Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(-45deg, #555, #222, #000, #111);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: #ffffff;
-            text-align: center;
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-    </style>
 </head>
 <body>
     <div class="menu-icon" onclick="toggleSidebar()">☰</div>
     <div class="sidebar" id="sidebar">
-        <a href="#" onclick="showContent('home')">Home</a>
-        <a href="#" onclick="showContent('about')">About</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
     </div>
-
     <header>
         <h1>The Brooklyn Latin School</h1>
         <div id="time">Loading time...</div>
     </header>
     <div class="container">
         <h1>Welcome</h1>
-        <div class="updates">Loading updates...</div>
+        <div class="updates"></div>
     </div>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.style.left = (sidebar.style.left === "0px") ? "-250px" : "0px";
-        }
-
-        function showContent(section) {
-            const content = document.querySelector(".container");
-            if (section === "home") {
-                content.innerHTML = "<h1>Welcome</h1><div class='updates'>Loading updates...</div>";
-                fetchUpdates();
-            } else if (section === "about") {
-                content.innerHTML = "<h1>About</h1><p>Learn more about The Brooklyn Latin School.</p>";
-            }
-        }
-
-        function updateTime() {
-            document.getElementById("time").textContent = new Date().toLocaleTimeString();
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        const sheetID = "10lZ3i0Rj7iUjOMG3TQCR18rKsP2JvDFGUjewcoAbj_8";
-        const apiKey = "AIzaSyBNvRfcN2csWoo0YZ5kW9Z865sefvyiJPA";
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/Sheet1?key=${apiKey}`;
-
-        async function fetchUpdates() {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-                const data = await response.json();
-
-                if (!data.values || data.values.length <= 1) {
-                    document.querySelector(".updates").innerHTML = "<h2>Latest Updates</h2><div class='update'>No updates available.</div>";
-                    return;
-                }
-                displayUpdates(data.values);
-            } catch (error) {
-                console.error("Error fetching updates:", error);
-                document.querySelector(".updates").innerHTML = `<h2>Latest Updates</h2><div class='update'>Error loading updates: ${error.message}</div>`;
-            }
-        }
-
-        function displayUpdates(rows) {
-            try {
-                const updatesContainer = document.querySelector(".updates");
-                updatesContainer.innerHTML = "<h2>Latest Updates</h2>";
-                rows.slice(1).forEach(([date, title, desc]) => {
-                    if (date && title && desc) {
-                        updatesContainer.innerHTML += `<div class="update"><strong>${date} - ${title}</strong><p>${desc}</p></div>`;
-                    }
-                });
-            } catch (error) {
-                console.error("Error displaying updates:", error);
-                document.querySelector(".updates").innerHTML = "<h2>Latest Updates</h2><div class='update'>Error processing updates.</div>";
-            }
-        }
-
-        // Load updates when the page loads
-        fetchUpdates();
-        setInterval(fetchUpdates, 60000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
