@@ -6,6 +6,64 @@
     <title>School Updates</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        #HCB_comment_box {
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+            font-family: Arial, sans-serif;
+        }
+
+        #HCB_comment_box textarea,
+        #HCB_comment_box input {
+            background: #2a2a2a;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        #HCB_comment_box input[type="submit"] {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #HCB_comment_box input[type="submit"]:hover {
+            background: #666;
+        }
+
+        .hcb-comment {
+            background: #2a2a2a;
+            border-left: 3px solid #444;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .hcb-user {
+            font-weight: bold;
+            color: #bbbbbb;
+        }
+
+        .hcb-time {
+            font-size: 0.8em;
+            color: #888888;
+        }
+
+        #HCB_comment_box a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        #HCB_comment_box a:hover {
+            text-decoration: underline;
+        }
         /* Sidebar Styles */
         .menu-icon {
             position: absolute;
